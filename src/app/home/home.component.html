@@ -1,3 +1,30 @@
-<p>
-  home works!
-</p>
+<form #homeForm="ngForm" (ngSubmit)="upload(homeForm.value)">
+
+  <input
+  type="text"
+  ngModel
+  name="name"
+  placeholder="Name">
+
+<button type="submit">Submit to FIREE</button>
+</form>
+
+
+
+
+<div *ngFor="let name of names | async">
+<ul>
+  <li>
+    {{name.name}}
+    <button (click)="delete(name)">delete</button>
+  </li>
+</ul>
+
+<form #updateForm="ngForm" (ngSubmit)="update(name)">
+  <input name="name" [(ngModel)]="name.name">
+  <button type="submit">Update</button>
+</form>
+
+</div>
+
+<button (click)="logout()">LogOut</button>
